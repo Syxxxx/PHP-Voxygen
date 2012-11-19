@@ -1,6 +1,6 @@
 <?php
-function curl_post($url, array $post = NULL, array $options = array())
-{
+
+function curl_post($url, array $post = NULL, array $options = array()) {
     $defaults = array(
         CURLOPT_POST => 1,
         CURLOPT_HEADER => 0,
@@ -22,13 +22,33 @@ function curl_post($url, array $post = NULL, array $options = array())
     return $result;
 } 
 
-function string_between($string, $start, $end)
-{
-    $string = " ".$string;
-    $ini = strpos($string,$start);
-    if ($ini == 0) return "";
-    $ini += strlen($start);
-    $len = strpos($string,$end,$ini) - $ini;
-    return substr($string,$ini,$len);
+function downloadFile($voice,$text) {
+    if (GROMMO) {
+        $text = grommo($text);
+    }
+    if (!is_dir('cache')) {
+        mkdir('cache');
+    }
+    $md5 = md5($voice.$text);
+    $file = 'cache/'.$md5.'.mp3';
+    if (!file_exists($file)) {
+        $post = array("voice" => $voice, "texte" => stripslashes(strip_tags($text)));
+        $voxyHTML = curl_post("http://voxygen.fr/index.php", $post);
+        preg_match('/mp3:"(.+?)"/',$voxyHTML,$regexHTML);
+        $link = $regexHTML[1];
+        file_put_contents($file, file_get_contents($link));
+    }
+    return $file;
 }
+
+function grommo($text) {
+    $grommoDB = array(
+        'bite' => 'bit',
+        'cul' => 'ku');
+    foreach ($grommoDB as $normal => $equivalent) {
+        $text = str_replace(' '.$normal.'',' '.$equivalent.' ', $text);
+    }
+    return $text;
+}
+
 ?>

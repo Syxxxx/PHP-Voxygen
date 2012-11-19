@@ -1,128 +1,99 @@
-﻿<?php 
-	
-	set_time_limit (20);
+﻿<?php
+	ob_start();
+	session_start();
+
+	define('GROMMO', true);
+
 	include 'fonctions.php';
 
-	$lien = '';
+	$voices = array('Agnes','Philippe','Loic','Bicool','Chut','DarkVadoor','Electra','JeanJean','John','Luc','Matteo','Melodine','Papi','Ramboo','Robot','Sidoo','Sorciere','Yeti','Zozo');
 
-	$errors = '';
-	$user_message = '';
-
-	if (isset($_POST['message'])) {
-		$user_message = $_POST['message'];
-	}
-	
-	$voix = "Agnes";
-	if (isset($_POST['voix'])) {
-		$voix = $_POST['voix'];
-	}
-	
-	$flash = "0";
-	if (isset($_GET['flash'])) {
-		$flash = $_GET['flash'];
-	}
-
-
-	if (isset($_POST['submit'])) {
-		$post = array("voice" => $voix, "texte" => $user_message);
-		$result = curl_post("http://voxygen.fr/index.php", $post);
-		$lien = string_between($result, 'mp3:"', '"');
-		$file = "cache/".rand(10000,99999);
-		file_put_contents($file.".mp3", file_get_contents($lien));
-	}
-
-	if (isset($_POST['download'])) {
-		$post = array("voice" => $voix, "texte" => $user_message);
-		$result = curl_post("http://voxygen.fr/index.php", $post);
-		$lien = string_between($result, 'mp3:"', '"');
-		$file = "cache/".rand(10000,99999);
-		file_put_contents($file.".mp3", file_get_contents($lien));
-		header('Location: '.$file.".mp3");
+	if ((isset($_POST['listen']) OR isset($_POST['download'])) AND isset($_POST['message']) AND isset($_POST['voice'])) {
+		$location = downloadFile($_POST['voice'],$_POST['message']);
+		if (isset($_POST['download'])) {
+			header('Location: '.$location);
+        	exit;
+		}
+	} elseif (isset($_POST['listen']) OR isset($_POST['download'])) {
+		die('PROUT, wrong parameters');
 	}
 ?>
-
 <!doctype html>
 <html>
 <head>
-	<title>VoiceBox</title>
-	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">	
-	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>PHP VoiceBox</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta charset="utf-8">
+	<link href="lib/bootstrap.css" rel="stylesheet">
+	<link href="lib/bootstrap-responsive.css" rel="stylesheet">
+	<style type="text/css">
+		@media (min-width: 981px) {
+			body {
+				padding-top: 60px;
+			}
+		}
+	</style>
 </head>
 <body>
+	<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">PHP VoiceBox</a>
+        </div>
+      </div>
+    </div>
 
 	<div class="container">
-		
-			<h3>Synthétiseur de voix en PHP | PHP VoiceBox</h3>
-			<form method="POST" class="form-horizontal"> 
-				<div class="control-group">
-					<label class="control-label" for="textarea">Message</label>
-					<div class="controls">
-						<textarea class="input-xlarge" id="textarea" rows="3" name="message" ><?php echo htmlentities($user_message); ?></textarea>
+		<form method="POST" class="form-horizontal" action="index.php"> 
+			<div class="control-group">
+				<label class="control-label">Message</label>
+				<div class="controls">
+					<textarea class="input-xlarge" rows="3" name="message" ><?php if (isset($_POST['message'])) { echo stripslashes(strip_tags($_POST['message'])); } ?></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Voix</label>
+				<div class="controls">
+					<select name="voice">
+						<?php
+							foreach ($voices as $voice) {
+								if (isset($_POST['voice']) AND $voice == $_POST['voice']) {
+									echo '<option selected>'.$voice.'</option>';
+								} else {
+									echo '<option>'.$voice.'</option>';
+								}
+							}
+						?>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<div class="btn-group">
+						<button type="submit" name="listen" class="btn btn-info">Écouter</button>
+						<button type="submit" name="download" class="btn btn-info">Télécharger</button>
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="select">Voix</label>
-					<div class="controls">
-						<select multiple="multiple" id="select" name="voix">
-							<option <?php if ($voix == "Agnes") { echo "selected"; }?>>Agnes</option>
-							<option <?php if ($voix == "Philippe") { echo "selected"; }?>>Philippe</option>
-							<option <?php if ($voix == "Loic") { echo "selected"; }?>>Loic</option>
-							<option <?php if ($voix == "Bicool") { echo "selected"; }?>>Bicool</option>
-							<option <?php if ($voix == "Chut") { echo "selected"; }?>>Chut</option>
-							<option <?php if ($voix == "DarkVadoor") { echo "selected"; }?>>DarkVadoor</option>
-							<option <?php if ($voix == "Electra") { echo "selected"; }?>>Electra</option>
-							<option <?php if ($voix == "JeanJean") { echo "selected"; }?>>JeanJean</option>
-							<option <?php if ($voix == "John") { echo "selected"; }?>>John</option>
-							<option <?php if ($voix == "Luc") { echo "selected"; }?>>Luc</option>
-							<option <?php if ($voix == "Matteo") { echo "selected"; }?>>Matteo</option>
-							<option <?php if ($voix == "Melodine") { echo "selected"; }?>>Melodine</option>
-							<option <?php if ($voix == "Papi") { echo "selected"; }?>>Papi</option>
-							<option <?php if ($voix == "Ramboo") { echo "selected"; }?>>Ramboo</option>
-							<option <?php if ($voix == "Robot") { echo "selected"; }?>>Robot</option>
-							<option <?php if ($voix == "Sidoo") { echo "selected"; }?>>Sidoo</option>
-							<option <?php if ($voix == "Sorciere") { echo "selected"; }?>>Sorciere</option>
-							<option <?php if ($voix == "Yeti") { echo "selected"; }?>>Yeti</option>
-							<option <?php if ($voix == "Zozo") { echo "selected"; }?>>Zozo</option>
-						</select>
-
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" name="submit" class="btn btn-info">Écouter le texte</button>
-						<button type="submit" name="download" class="btn btn-info">Télécharger le fichier MP3</button>
-					</div>
-				</div>
-
+			</div>
 			<div class="control-group">
 				<div class="controls">
 				<?php 
-					if ($lien != "") {
-						if ($flash == "1") {
-							echo '<pre><embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" flashvars="audioUrl='.$file.'.mp3&autoPlay=true" width="365" height="25" quality="best"></embed></pre>';		
-						} else {
-							echo '<audio preload="auto" controls="controls" autoplay="autoplay">';
-							echo '<source src="'.$file.'.mp3" type="audio/mpeg" />';	
-							echo '</audio>';
-							echo '<br><br><a href="?flash=1" class="btn btn-small">Vous n'."'".'entendez pas le son ? Cliquez ici pour utiliser le player flash</a>';
-						}
+					if (isset($_POST['listen']) AND !empty($location)) {
+				?>
+					<object type="application/x-shockwave-flash" data="lib/dewplayer.swf" width="200" height="20" id="dewplayer" name="dewplayer">
+						<param name="movie" value="lib/dewplayer.swf" />
+						<param name="flashvars" value="mp3=<?php echo $location; ?>&amp;autostart=1" />
+						<param name="wmode" value="transparent" />
+						<audio preload="auto" controls="controls">
+							<source src="<?php echo $location; ?>" type="audio/mpeg" />
+						</audio>
+					</object>
+				<?php
 					}
 				?>
 				</div>
 			</div>
-
-			</form>
-
-			<footer><i>"Les versions alpha de tes logiciels sont plus fonctionnelles que la version finale de NebulaCloud"</i> <a href="http://twitter.com/Apcros">@Apcros</a></footer>
-			<br>
-
-			<footer>
-				Version 0.4 | Report bugs: <a href="http://twitter.com/mGeek_">@mGeek_</a>
-				<br>&copy; Copyright 2012 - <a href="http://mgeek.fr/">mGeek</a>
-				<small><br>Merci à <a href="http://voxygen.fr/">voxygen.fr</a></small>
-			</footer>
-
-		</body>
-		</div>
+		</form>
+	</div>
+</body>
 </html>
