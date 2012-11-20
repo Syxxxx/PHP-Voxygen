@@ -46,8 +46,8 @@ Elle se trouve dans /engine.php, et elle s'utilise de la manière suivante :
 
 ```php
 <?php
-	$voxygenHandler = new Voxygen(Utilisation de l'algo GROMMO : (bool),Dossier de stockage du cache : (string));
-	$voxygenHandler->voiceSynthesis(Voix : (string),Texte : (string)); // Retourne l'url du fichier stocké (string)
+	$voxygenHandler = new Voxygen(Activation de GROMMO : (bool),Dossier de stockage du cache : (string));
+	$voxygenHandler->voiceSynthesis(Voix : (string),Texte : (string)); // Retourne url du fichier stocké (string)
 ?>
 ```
 
@@ -57,6 +57,6 @@ PHP VoiceBox utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichie
 
 ## Releases
 
-* [Version 0.3]()
+* [Version 0.3](https://github.com/tibounise/PHP-VoiceBox/tree/bcfa90a2f693e928d216f8dee9e401137d78411d)
 * [Version 0.2](https://github.com/tibounise/PHP_VoiceBox/tree/02d1ba169e6dd0d04f59a60658999e5edaa4e67e)
 * [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/tree/1136cdf19f15b0c7db43ebd47baebc55cc9b0848)
