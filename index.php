@@ -1,21 +1,16 @@
 ﻿<?php
-	ob_start();
-	session_start();
+	include 'engine.php';
 
 	define('GROMMO', true);
 
-	include 'fonctions.php';
-
-	$voices = array('Agnes','Philippe','Loic','Bicool','Chut','DarkVadoor','Electra','JeanJean','John','Luc','Matteo','Melodine','Papi','Ramboo','Robot','Sidoo','Sorciere','Yeti','Zozo');
-
-	if ((isset($_POST['listen']) OR isset($_POST['download'])) AND isset($_POST['message']) AND isset($_POST['voice'])) {
+	if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['message']) AND !empty($_POST['voice'])) {
 		$location = downloadFile($_POST['voice'],$_POST['message']);
 		if (isset($_POST['download'])) {
 			header('Location: '.$location);
         	exit;
 		}
 	} elseif (isset($_POST['listen']) OR isset($_POST['download'])) {
-		die('PROUT, wrong parameters');
+		$errorMessage = 'Vous avez oublié de remplir certains champs.';
 	}
 ?>
 <!doctype html>
@@ -44,6 +39,15 @@
     </div>
 
 	<div class="container">
+		<?php
+			if (isset($errorMessage)) {
+		?>
+		<div class="alert alert-error">
+			<?php echo $errorMessage; ?>
+		</div>
+		<?php
+			}
+		?>
 		<form method="POST" class="form-horizontal" action="index.php"> 
 			<div class="control-group">
 				<label class="control-label">Message</label>
