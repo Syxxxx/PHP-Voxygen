@@ -40,3 +40,7 @@ Démerdez-vous avec ça :>
 ## Licences
 
 PHP VoiceBox utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichiers obtenus est donc réglementée par le service. PHP VoiceBox utilise aussi le Bootstrap Twitter sous licence Apache v2.0 ainsi que Dewplayer sous licence Creative Commons BY-ND.
+
+## Releases
+
+* [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/commit/f173c7b3a2880c0d39fc89aa5701ba4baa4ba43d)
