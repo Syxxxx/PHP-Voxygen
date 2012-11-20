@@ -43,4 +43,4 @@ PHP VoiceBox utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichie
 
 ## Releases
 
-* [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/commit/f173c7b3a2880c0d39fc89aa5701ba4baa4ba43d)
+* [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/tree/f173c7b3a2880c0d39fc89aa5701ba4baa4ba43d)
