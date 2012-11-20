@@ -13,6 +13,7 @@ PHP VoiceBox est un service en ligne permettant d'utiliser la synthèse vocale d
 * Intégration des libraires en local
 * Ajout d'un filtre anti-censure
 * Vérifications lorsque l'utilisateur ne rentre pas de texte ou que Voxygen renvoie des trucs chelou
+* Création d'une classe Voxygen
 
 ## Testé sous
 
@@ -37,11 +38,25 @@ PHP VoiceBox ne dispose pas actuellement de système de vidage du cache.
 
 Démerdez-vous avec ça :>
 
+## Utilisation de PHP VoiceBox avec des applications tierces
+
+PHP VoiceBox a sa classe pour être utilisé dans vos propres applications. Libre à vous d'optimiser cette classe, j'accepte les pull-request (pour peu que vous me foutez pas de la merde ^.^).
+
+Elle se trouve dans /engine.php, et elle s'utilise de la manière suivante :
+
+```php
+<?php
+	$voxygenHandler = new Voxygen(Utilisation de l'algo GROMMO : (bool),Dossier de stockage du cache : (string));
+	$voxygenHandler->voiceSynthesis(Voix : (string),Texte : (string)); // Retourne l'url du fichier stocké (string)
+?>
+```
+
 ## Licences
 
 PHP VoiceBox utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichiers obtenus est donc réglementée par le service. PHP VoiceBox utilise aussi le Bootstrap Twitter sous licence Apache v2.0 ainsi que Dewplayer sous licence Creative Commons BY-ND.
 
 ## Releases
 
+* [Version 0.3]()
 * [Version 0.2](https://github.com/tibounise/PHP_VoiceBox/tree/02d1ba169e6dd0d04f59a60658999e5edaa4e67e)
 * [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/tree/1136cdf19f15b0c7db43ebd47baebc55cc9b0848)

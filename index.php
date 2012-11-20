@@ -1,17 +1,26 @@
 ﻿<?php
-	include 'engine.php';
+// PHP VoiceBox 0.3
+// Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
-	define('GROMMO', true);
+include 'engine.php';
 
-	if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['message']) AND !empty($_POST['voice'])) {
-		$location = downloadFile($_POST['voice'],$_POST['message']);
-		if (isset($_POST['download'])) {
-			header('Location: '.$location);
-        	exit;
-		}
-	} elseif (isset($_POST['listen']) OR isset($_POST['download'])) {
-		$errorMessage = 'Vous avez oublié de remplir certains champs.';
+$voxygen = new Voxygen(true);
+$errorMessage = '';
+
+if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['message']) AND !empty($_POST['voice'])) {
+	try {
+		$location = $voxygen->voiceSynthesis($_POST['voice'],$_POST['message']);	
+	} catch (Exception $e) {
+		$errorMessage .= $e.' ';
 	}
+	if (isset($_POST['download'])) {
+		header('Location: '.$location);
+       	exit;
+	}
+} elseif (isset($_POST['listen']) OR isset($_POST['download'])) {
+	$errorMessage .= 'Vous avez oublié de remplir certains champs. ';
+}
+
 ?>
 <!doctype html>
 <html>
@@ -40,12 +49,8 @@
 
 	<div class="container">
 		<?php
-			if (isset($errorMessage)) {
-		?>
-		<div class="alert alert-error">
-			<?php echo $errorMessage; ?>
-		</div>
-		<?php
+			if (!empty($errorMessage)) {
+				echo '<div class="alert alert-error">'.$errorMessage.'</div>';
 			}
 		?>
 		<form method="POST" class="form-horizontal" action="index.php"> 
@@ -59,15 +64,7 @@
 				<label class="control-label">Voix</label>
 				<div class="controls">
 					<select name="voice">
-						<?php
-							foreach ($voices as $voice) {
-								if (isset($_POST['voice']) AND $voice == $_POST['voice']) {
-									echo '<option selected>'.$voice.'</option>';
-								} else {
-									echo '<option>'.$voice.'</option>';
-								}
-							}
-						?>
+						<?php echo $voxygen->voiceList(isset($_POST['voice']) ? $_POST['voice'] : null); ?>
 					</select>
 				</div>
 			</div>
