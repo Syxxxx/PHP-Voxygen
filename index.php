@@ -1,5 +1,5 @@
 ﻿<?php
-// PHP VoiceBox 0.3
+// PHP VoiceBox 0.4
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 include 'engine.php';
@@ -13,10 +13,6 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 	} catch (Exception $e) {
 		$errorMessage .= $e.' ';
 	}
-	if (isset($_POST['download'])) {
-		header('Location: '.$location);
-       	exit;
-	}
 } elseif (isset($_POST['listen']) OR isset($_POST['download'])) {
 	$errorMessage .= 'Vous avez oublié de remplir certains champs. ';
 }
@@ -27,9 +23,22 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 <head>
 	<title>PHP VoiceBox</title>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-	<meta charset="utf-8">
-	<link href="lib/bootstrap.css" rel="stylesheet">
-	<link href="lib/bootstrap-responsive.css" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<?php
+		if (isset($_POST['download'])) {
+			echo '<meta http-equiv="refresh" content="0; URL='.$location.'">';
+		}
+	?>
+	<link href="lib/bootstrap.css" rel="stylesheet" />
+	<link href="lib/bootstrap-responsive.css" rel="stylesheet" />
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch/touch-icon-57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch/touch-icon-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch/touch-icon-72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch/touch-icon-144.png" />
+	<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="apple-touch/touch-startup-460.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="apple-touch/touch-startup-920.png">
+	<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="apple-touch/touch-startup-1096.png">
 	<style type="text/css">
 		@media (min-width: 981px) {
 			body {
