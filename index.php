@@ -30,7 +30,7 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 			echo '<meta http-equiv="refresh" content="0; URL='.$location.'">';
 		}
 	?>
-	<link href="lib/bootstrap.css" rel="stylesheet" />
+	<link href="lib/bootstrap.min.css" rel="stylesheet" />
 	<link href="lib/bootstrap-responsive.css" rel="stylesheet" />
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch/touch-icon-57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch/touch-icon-114.png" />

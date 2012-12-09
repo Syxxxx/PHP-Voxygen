@@ -40,11 +40,14 @@ class Voxygen {
         return $file;   
     }
     public function grommoFilter($text) {
+        $text = ' '.$text.' ';
         $grommoDB = array(
             'bite' => 'bit',
-            'cul' => 'ku');
+            'cul' => 'ku',
+            'putain' => 'puh tin',
+            'shit' => 'shi ihte');
         foreach ($grommoDB as $normal => $equivalent) {
-            $text = str_replace(' '.$normal.'',' '.$equivalent.' ', $text);
+            $text = str_replace(' '.$normal.' ',' '.$equivalent.' ', $text);
         }
         return $text;
     }
