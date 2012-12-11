@@ -49,9 +49,13 @@ class Voxygen {
             'enculer' => 'an qu\'hulé',
             'enculé' => 'an qu\'hulé',
             'salope' => 'sale ôpe',
-            'morsay' => 'morsaille');
+            'morsay' => 'morsaille',
+            'suce' => 'suh sse',
+            'sucer' => 'suh ceh');
         foreach ($grommoDB as $normal => $equivalent) {
-            $text = str_replace(' '.$normal.' ',' '.$equivalent.' ', $text);
+            $text = str_ireplace(' '.$normal.' ',' '.$equivalent.' ', $text);
+            $text = str_ireplace(' '.$normal.'.',' '.$equivalent.'.', $text);
+            $text = str_ireplace('.'.$normal.' ','.'.$equivalent.' ', $text);
         }
         return $text;
     }
