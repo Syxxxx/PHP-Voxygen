@@ -45,7 +45,11 @@ class Voxygen {
             'bite' => 'bit',
             'cul' => 'ku',
             'putain' => 'puh tin',
-            'shit' => 'shi ihte');
+            'shit' => 'shi ihte',
+            'enculer' => 'an qu\'hulé',
+            'enculé' => 'an qu\'hulé',
+            'salope' => 'sale ôpe',
+            'morsay' => 'morsaille');
         foreach ($grommoDB as $normal => $equivalent) {
             $text = str_replace(' '.$normal.' ',' '.$equivalent.' ', $text);
         }

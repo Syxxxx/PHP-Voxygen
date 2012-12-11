@@ -9,7 +9,8 @@ $errorMessage = '';
 
 if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['message']) AND !empty($_POST['voice'])) {
 	try {
-		$location = $voxygen->voiceSynthesis($_POST['voice'],$_POST['message']);	
+		$location = $voxygen->voiceSynthesis($_POST['voice'],$_POST['message']);
+		$mp3name = explode('/',$location);	
 	} catch (Exception $e) {
 		$errorMessage .= $e.' ';
 	}
@@ -27,7 +28,7 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<?php
 		if (isset($_POST['download'])) {
-			echo '<meta http-equiv="refresh" content="0; URL='.$location.'">';
+			echo '<meta http-equiv="refresh" content="0; URL=getfromcache.php?id='.$mp3name[1].'">';
 		}
 	?>
 	<link href="lib/bootstrap.min.css" rel="stylesheet" />
