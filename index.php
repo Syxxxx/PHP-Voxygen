@@ -1,5 +1,5 @@
 ﻿<?php
-// PHP VoiceBox 0.4
+// PHP VoiceBox 0.5
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 include 'engine.php';

@@ -21,14 +21,13 @@ PHP VoiceBox est un service en ligne permettant d'utiliser la synthèse vocale d
 * Firefox 16
 * Chrome 23
 
-## Todo-list
+## On me dit que Voxygen a changé ses API, alors que PHP VoiceBox fonctionne sur un autre serveur. Pourquoi ?
 
-* Améliorer l'anti-censure
-* Système de vidage du cache
+J'ai eu ce problème une fois, quand je voulais faire une démo dans un lieu où le pare-feu était assez restrictif. Vérifiez vos réglages réseaux et votre serveur web.
 
 ## Filtre GROMMO (anti-censure)
 
-Ce filtre permet d'autoriser quelques mots "interdits" par VoxyGen.fr d'être prononcés. La base de données s'élève actuellement à deux "traductions" (youpi !) mais si il y a des gens qui seraient intéressés pour m'aider, je suis prenneur, le système est fait, maintenant, il ne reste plus qu'à ajouter vos équivalents gros-mot -> charabia :)
+Ce filtre permet d'autoriser quelques mots "interdits" par VoxyGen.fr d'être prononcés. La base de données s'élève actuellement à une quantité limitées de "traductions" mais si il y a des gens qui seraient intéressés pour m'aider, je suis prenneur, le système est fait, maintenant, il ne reste plus qu'à ajouter vos équivalents gros-mot -> charabia :)
 
 ## Dossier cache
 
