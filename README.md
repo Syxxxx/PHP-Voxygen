@@ -55,7 +55,8 @@ Elle se trouve dans /engine.php, et elle s'utilise de la manière suivante :
 PHP VoiceBox utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichiers obtenus est donc réglementée par le service. PHP VoiceBox utilise aussi le Bootstrap Twitter sous licence Apache v2.0 ainsi que Dewplayer sous licence Creative Commons BY-ND.
 
 ## Releases
+* [Version 0.5](https://github.com/tibounise/PHP-VoiceBox/tree/ed52d9576e7e539bc7c6b2ec5818ad2f6b08518c)
 * [Version 0.4](https://github.com/tibounise/PHP-VoiceBox/tree/0f187635ea6375accbf76b8fed2718ed984e63f8)
 * [Version 0.3](https://github.com/tibounise/PHP-VoiceBox/tree/bcfa90a2f693e928d216f8dee9e401137d78411d)
-* [Version 0.2](https://github.com/tibounise/PHP_VoiceBox/tree/02d1ba169e6dd0d04f59a60658999e5edaa4e67e)
-* [Version 0.1](https://github.com/tibounise/PHP_VoiceBox/tree/1136cdf19f15b0c7db43ebd47baebc55cc9b0848)
+* [Version 0.2](https://github.com/tibounise/PHP-VoiceBox/tree/02d1ba169e6dd0d04f59a60658999e5edaa4e67e)
+* [Version 0.1](https://github.com/tibounise/PHP-VoiceBox/tree/1136cdf19f15b0c7db43ebd47baebc55cc9b0848)
