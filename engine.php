@@ -1,11 +1,11 @@
 <?php
-// PHP VoiceBox 0.3
+// PHP VoiceBox 0.5
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 class Voxygen {
     private $grommo;
     private $cacheFolder;
-    public $voices = array('Agnes','Philippe','Loic','Bicool','Chut','DarkVadoor','Electra','JeanJean','John','Luc','Matteo','Melodine','Papi','Ramboo','Robot','Sidoo','Sorciere','Yeti','Zozo');
+    public $voices = array('Damien','Eva','Agnes','Philippe','Loic','Bicool','Chut','DarkVadoor','Electra','JeanJean','John','Luc','Matteo','Melodine','Papi','Ramboo','Robot','Sidoo','Sorciere','Yeti','Zozo','Marta','Elizabeth','Bibi','Paul','Bronwen','Adel');
 
     public function __construct($grommo = false,$cacheFolder = 'cache') {
         if (is_bool($grommo)) {
