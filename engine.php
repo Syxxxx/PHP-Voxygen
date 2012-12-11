@@ -28,7 +28,7 @@ class Voxygen {
         $md5 = md5($voice.$text);
         $file = $this->cacheFolder.'/'.$md5.'.mp3';
         if (!file_exists($file)) {
-            $post = array('voice' => $voice, 'texte' => stripslashes(strip_tags($text)));
+            $post = 'voice='.$voice.'&texte='.trim(stripslashes(strip_tags(utf8_decode($text))));
             $voxygenHTML = $this->curlJob($post);
             if (preg_match('/mp3:"(.+?)"/',$voxygenHTML,$regexHTML)) {
                 $link = $regexHTML[1];
