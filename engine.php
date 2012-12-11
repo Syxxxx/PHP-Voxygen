@@ -64,10 +64,10 @@ class Voxygen {
     }
     private function curlJob($post) {
         $curlHandler = curl_init("voxygen.fr/index.php");
-        curl_setopt($curlHandler, CURLOPT_HEADER, 0);
-        curl_setopt($curlHandler, CURLOPT_POST, 1);
+        curl_setopt($curlHandler, CURLOPT_HEADER, true);
+        curl_setopt($curlHandler, CURLOPT_POST, false);
         curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $post);
-        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
         $output = curl_exec($curlHandler);
         curl_close($curlHandler);
         return $output;
