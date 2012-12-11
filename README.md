@@ -15,12 +15,6 @@ PHP VoiceBox est un service en ligne permettant d'utiliser la synthèse vocale d
 * Vérifications lorsque l'utilisateur ne rentre pas de texte ou que Voxygen renvoie des trucs chelou
 * Création d'une classe Voxygen
 
-## Testé sous
-
-* iOS 5.0
-* Firefox 16
-* Chrome 23
-
 ## On me dit que Voxygen a changé ses API, alors que PHP VoiceBox fonctionne sur un autre serveur. Pourquoi ?
 
 J'ai eu ce problème une fois, quand je voulais faire une démo dans un lieu où le pare-feu était assez restrictif. Vérifiez vos réglages réseaux et votre serveur web.
@@ -36,6 +30,8 @@ PHP VoiceBox ne dispose pas actuellement de système de vidage du cache.
 > rm -rf cache/*
 
 Démerdez-vous avec ça :>
+
+Il serait néanmoins judicieux de faire un script cron effectuant la commande ci-dessus toutes les XX minutes.
 
 ## Utilisation de PHP VoiceBox avec des applications tierces
 
