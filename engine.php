@@ -1,5 +1,5 @@
 <?php
-// PHP VoiceBox 0.5
+// PHP VoiceBox 0.6
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 class Voxygen {
@@ -51,7 +51,8 @@ class Voxygen {
             'salope' => 'sale ôpe',
             'morsay' => 'morsaille',
             'suce' => 'suh sse',
-            'sucer' => 'suh ceh');
+            'sucer' => 'suh ceh',
+            'nems' => 'naimes');
         foreach ($grommoDB as $normal => $equivalent) {
             $text = str_ireplace(' '.$normal.' ',' '.$equivalent.' ', $text);
             $text = str_ireplace(' '.$normal.'.',' '.$equivalent.'.', $text);
