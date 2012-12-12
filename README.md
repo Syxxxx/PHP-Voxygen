@@ -51,7 +51,7 @@ Elle se trouve dans /engine.php, et elle s'utilise de la manière suivante :
 PHP Voxygen utilise la synthèse vocale de Voxygen.fr, l'utilisation des fichiers obtenus est donc réglementée par le service. PHP Voxygen utilise aussi le Bootstrap Twitter sous licence Apache v2.0 ainsi que Dewplayer sous licence Creative Commons BY-ND.
 
 ## Releases
-* [Version 1.0](https://github.com/tibounise/PHP-Voxygen/tree/e8d4e03ff4eaf56f4ce82f0d6daaa1b7928ea14b)
+* [Version 1.0](https://github.com/tibounise/PHP-Voxygen/tree/0adbcfa55f3999c19cd5e2bfed97f315c4513054)
 * [Version 0.6](https://github.com/tibounise/PHP-Voxygen/tree/dba536de74f663d9475fefa42d36ba413f10aeb8)
 * [Version 0.5](https://github.com/tibounise/PHP-Voxygen/tree/ed52d9576e7e539bc7c6b2ec5818ad2f6b08518c)
 * [Version 0.4](https://github.com/tibounise/PHP-Voxygen/tree/0f187635ea6375accbf76b8fed2718ed984e63f8)
