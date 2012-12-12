@@ -22,7 +22,7 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 <!doctype html>
 <html>
 <head>
-	<title>PHP VoiceBox</title>
+	<title>PHP Voxygen</title>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 	<meta charset="utf-8" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,7 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 	<div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">PHP VoiceBox</a>
+          <a class="brand" href="#">PHP Voxygen</a>
         </div>
       </div>
     </div>
