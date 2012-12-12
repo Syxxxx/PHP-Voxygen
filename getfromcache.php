@@ -1,5 +1,5 @@
 <?php
-// PHP VoiceBox 0.6
+// PHP Voxygen 1.0
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 $path = 'cache/'.$_GET['id'];
