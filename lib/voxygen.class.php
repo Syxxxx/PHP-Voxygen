@@ -42,17 +42,17 @@ class Voxygen {
     public function grommoFilter($text) {
         $text = ' '.$text.' ';
         $grommoDB = array(
-            'bite' => 'bit',
-            'cul' => 'ku',
-            'putain' => 'puh tin',
-            'shit' => 'shi ihte',
+            'bite'    => 'bit',
+            'cul'     => 'ku',
+            'putain'  => 'puh tin',
+            'shit'    => 'shi ihte',
             'enculer' => 'an qu\'hulé',
-            'enculé' => 'an qu\'hulé',
-            'salope' => 'sale ôpe',
-            'morsay' => 'morsaille',
-            'suce' => 'suh sse',
-            'sucer' => 'suh ceh',
-            'nems' => 'naimes');
+            'enculé'  => 'an qu\'hulé',
+            'salope'  => 'sale ôpe',
+            'morsay'  => 'morsaille',
+            'suce'    => 'suh sse',
+            'sucer'   => 'suh ceh',
+            'nems'    => 'naimes');
         foreach ($grommoDB as $normal => $equivalent) {
             $text = str_ireplace(' '.$normal.' ',' '.$equivalent.' ', $text);
             $text = str_ireplace(' '.$normal.'.',' '.$equivalent.'.', $text);
