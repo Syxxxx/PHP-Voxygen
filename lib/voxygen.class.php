@@ -77,6 +77,8 @@ class Voxygen {
         curl_setopt($curlHandler, CURLOPT_POST, false);
         curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $post);
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlHandler, CURLOPT_REFERER, 'http://voxygen.fr/index.php');
+        curl_setopt($curlHandler, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1');
         $output = curl_exec($curlHandler);
         curl_close($curlHandler);
         return $output;
