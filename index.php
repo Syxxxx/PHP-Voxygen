@@ -74,7 +74,16 @@ if ((isset($_POST['listen']) OR isset($_POST['download'])) AND !empty($_POST['me
 				<label class="control-label">Voix</label>
 				<div class="controls">
 					<select name="voice">
-						<?php echo $voxygen->voiceList(isset($_POST['voice']) ? $_POST['voice'] : null); ?>
+						<?php
+							$voice = isset($_POST['voice']) ? $_POST['voice'] : null;
+    						foreach ($voxygen->voices as $voice) {
+    						    if (isset($_POST['voice']) AND $voice == $_POST['voice']) {
+    						        echo '<option selected>'.$voice.'</option>';
+    						    } else {
+    						        echo '<option>'.$voice.'</option>';
+    						    }
+    						}
+						?>
 					</select>
 				</div>
 			</div>

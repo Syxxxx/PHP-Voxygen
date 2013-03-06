@@ -3,10 +3,37 @@
 // Forked by TiBounise (http://tibounise.com) based on the inital code of mGeek (http://mgeek.fr)
 
 class Voxygen {
+    /**
+     * Status of the grommo filter
+     * 
+     * @var boolean
+     * @access private
+     */
     private $grommo;
+
+    /**
+     * Path to the cache folder
+     * 
+     * @var string
+     * @access private
+     */
     private $cacheFolder;
+
+    /**
+     * Array of the voices
+     * 
+     * @var array
+     * @access public
+     */
     public $voices = array('Damien','Eva','Agnes','Philippe','Loic','Bicool','Chut','DarkVadoor','Electra','JeanJean','John','Luc','Matteo','Melodine','Papi','Ramboo','Robot','Sidoo','Sorciere','Yeti','Zozo','Marta','Elizabeth','Bibi','Paul','Bronwen','Adel');
 
+    /**
+     * Class initialisator
+     * 
+     * @param boolean $grommo State of the grommo filter
+     * @param string $cacheFolder Path to the cache folder
+     * @access public
+     */
     public function __construct($grommo = false,$cacheFolder = 'cache') {
         if (is_bool($grommo)) {
             $this->grommo = $grommo;
@@ -15,6 +42,15 @@ class Voxygen {
             $this->cacheFolder = $cacheFolder;
         }
     }
+
+    /**
+     * Main function to do voice synthesis requests
+     * 
+     * @param string $voice Voice
+     * @param string $text Text to be said
+     * @access public
+     * @return string Path to the rendered file
+     */
     public function voiceSynthesis($voice,$text) {
         if (!in_array($voice,$this->voices)) {
             throw new Exception('This voice you\'ve selected is currently not implemented.');
@@ -39,6 +75,14 @@ class Voxygen {
         }
         return $file;   
     }
+
+    /**
+     * Grommo filter function
+     * 
+     * @param string $text Text to filter
+     * @return string Text filtered
+     * @access public
+     */
     public function grommoFilter($text) {
         $text = ' '.$text.' ';
         $grommoDB = array(
@@ -60,17 +104,14 @@ class Voxygen {
         }
         return $text;
     }
-    public function voiceList($voice = 'Agnes') {
-        $list = '';
-        foreach ($this->voices as $voice) {
-            if (isset($_POST['voice']) AND $voice == $_POST['voice']) {
-                $list .= '<option selected>'.$voice.'</option>';
-            } else {
-                $list .= '<option>'.$voice.'</option>';
-            }
-        }
-        return $list;
-    }
+
+    /**
+     * HTTP request function
+     * 
+     * @param string $post Content of the request
+     * @return string Output of the request
+     * @access private
+     */
     private function curlJob($post) {
         $curlHandler = curl_init("voxygen.fr/index.php");
         curl_setopt($curlHandler, CURLOPT_HEADER, true);
