@@ -64,11 +64,11 @@ class Voxygen {
         $md5 = md5($voice.$text);
         $file = $this->cacheFolder.'/'.$md5.'.mp3';
         if (!file_exists($file)) {
-            $post = 'voice='.$voice.'&texte='.trim(stripslashes(strip_tags(utf8_decode($text))));
-            $voxygenHTML = $this->curlJob($post);
-            if (preg_match('/mp3:"(.+?)"/',$voxygenHTML,$regexHTML)) {
-                $link = $regexHTML[1];
-                file_put_contents($file, file_get_contents($link));
+            $post = 'method=get&voice='.$voice.'&text='.trim(stripslashes(strip_tags(utf8_decode($text))));
+            $voxygenJSON = $this->curlJob($post);
+            $voxygenParsedData = json_decode($voxygenJSON,true);
+            if ($voxygenParsedData !== null && isset($voxygenParsedData['signal'])) {
+                file_put_contents($file,file_get_contents($voxygenParsedData['signal']));
             } else {
                 throw new Exception('Voxygen has probably changed its APIs. We can\'t get a correct URL.');
             }
@@ -113,13 +113,19 @@ class Voxygen {
      * @access private
      */
     private function curlJob($post) {
-        $curlHandler = curl_init("voxygen.fr/index.php");
-        curl_setopt($curlHandler, CURLOPT_HEADER, true);
-        curl_setopt($curlHandler, CURLOPT_POST, false);
+        $curlHandler = curl_init("http://voxygen.fr/sites/all/modules/voxygen_voices/assets/proxy/index.php");
+        curl_setopt($curlHandler, CURLOPT_HEADER, false);
+        curl_setopt($curlHandler, CURLOPT_POST, true);
         curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $post);
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curlHandler, CURLOPT_REFERER, 'http://voxygen.fr/index.php');
-        curl_setopt($curlHandler, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1');
+        curl_setopt($curlHandler, CURLOPT_REFERER, 'http://voxygen.fr/fr');
+        curl_setopt($curlHandler, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0');
+        curl_setopt($curlHandler, CURLOPT_COOKIE, 'has_js=1');
+        curl_setopt($curlHandler, CURLOPT_HTTPHEADER, array(
+            'Content-type: application/x-www-form-urlencoded',
+            'X-Requested-With:  XMLHttpRequest',
+            'Host: voxygen.fr'
+        ));
         $output = curl_exec($curlHandler);
         curl_close($curlHandler);
         return $output;
