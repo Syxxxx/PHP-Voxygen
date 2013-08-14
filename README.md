@@ -1,5 +1,7 @@
 # PHP Voxygen
 
+![Screenshot de PHP Voxygen](http://i.imgur.com/C2ILxAN.png)
+
 ## Qu'est-ce que PHP Voxygen ?
 
 PHP Voxygen est un service en ligne permettant d'utiliser la synthèse vocale de Voxygen.fr sans avoir à passer par leur interface.
