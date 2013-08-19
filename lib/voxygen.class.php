@@ -64,7 +64,7 @@ class Voxygen {
         $md5 = md5($voice.$text);
         $file = $this->cacheFolder.'/'.$md5.'.mp3';
         if (!file_exists($file)) {
-            $post = 'method=get&voice='.$voice.'&text='.trim(stripslashes(strip_tags(utf8_decode($text))));
+            $post = 'method=get&voice='.$voice.'&text='.urlencode($text);
             $voxygenJSON = $this->curlJob($post);
             $voxygenParsedData = json_decode($voxygenJSON,true);
             if ($voxygenParsedData !== null && isset($voxygenParsedData['signal'])) {
