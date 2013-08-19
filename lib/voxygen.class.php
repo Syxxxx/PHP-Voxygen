@@ -55,6 +55,9 @@ class Voxygen {
         if (!in_array($voice,$this->voices)) {
             throw new Exception('This voice you\'ve selected is currently not implemented.');
         }
+
+        if (get_magic_quotes_gpc()) $text = stripslashes($text);
+
         if ($this->grommo) {
             $text = $this->grommoFilter($text);
         }
